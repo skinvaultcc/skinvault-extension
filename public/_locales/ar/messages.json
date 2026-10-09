@@ -1,0 +1,23 @@
+{
+	"extName": {
+		"message": "SkinVault"
+	},
+	"extDescription": {
+		"message": "يربط حسابك على Steam بـ SkinVault من متصفحك أنت، فيعرض Steam موقعك أنت عند الموافقة."
+	},
+	"popupReady": {
+		"message": "جاهزة لربط حسابك على Steam."
+	},
+	"popupNeedsAccess": {
+		"message": "اسمح بالوصول إلى تسجيل الدخول في Steam حتى تتمكن الإضافة من ربط حسابك."
+	},
+	"popupAllow": {
+		"message": "السماح بالوصول"
+	},
+	"popupOpenAccount": {
+		"message": "افتح حسابك على SkinVault"
+	},
+	"popupHowTo": {
+		"message": "في صفحة حسابك، اختر ربط Steam عبر الإضافة، ثم امسح رمز QR بتطبيق Steam."
+	}
+}
