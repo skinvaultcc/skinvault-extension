@@ -1,0 +1,23 @@
+{
+	"extName": {
+		"message": "SkinVault"
+	},
+	"extDescription": {
+		"message": "Links your Steam account to SkinVault from your own browser, so Steam shows your own location when you approve it."
+	},
+	"popupReady": {
+		"message": "Ready to link your Steam account."
+	},
+	"popupNeedsAccess": {
+		"message": "Allow access to Steam's login so the extension can link your account."
+	},
+	"popupAllow": {
+		"message": "Allow access"
+	},
+	"popupOpenAccount": {
+		"message": "Open your SkinVault account"
+	},
+	"popupHowTo": {
+		"message": "On your account page, choose to link Steam with the extension, then scan the QR code with the Steam app."
+	}
+}

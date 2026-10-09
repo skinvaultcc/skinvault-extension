@@ -1,0 +1,23 @@
+{
+	"extName": {
+		"message": "SkinVault"
+	},
+	"extDescription": {
+		"message": "Vincula sua conta Steam ao SkinVault a partir do seu próprio navegador, para que a Steam mostre sua própria localização ao aprovar."
+	},
+	"popupReady": {
+		"message": "Pronta para vincular sua conta Steam."
+	},
+	"popupNeedsAccess": {
+		"message": "Permita o acesso ao login da Steam para que a extensão possa vincular sua conta."
+	},
+	"popupAllow": {
+		"message": "Permitir acesso"
+	},
+	"popupOpenAccount": {
+		"message": "Abrir sua conta SkinVault"
+	},
+	"popupHowTo": {
+		"message": "Na página da sua conta, escolha vincular a Steam com a extensão e escaneie o código QR com o app da Steam."
+	}
+}

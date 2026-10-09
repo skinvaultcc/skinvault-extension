@@ -15,15 +15,23 @@ A web page can't do this itself: `api.steampowered.com` doesn't allow requests f
 
 ## Project structure
 
-- `entrypoints/`: one file per entrypoint, as WXT expects. `background.ts` makes the Steam calls; `content.ts` runs on SkinVault's pages and carries messages between the page and the background script. Both only wire up the code in `lib/`.
-- `lib/`: `steam-login.ts` (the two Steam calls), `login-handler.ts` (the background script's side of the protocol), `page-bridge.ts` (the content script's side) and `protocol.ts` (the messages and SkinVault's origins).
-- `public/`: files copied as-is into the package, such as the icons.
+- `entrypoints/`: one file per entrypoint, as WXT expects. `background.ts` makes the Steam calls; `content.ts` runs on SkinVault's pages and carries messages between the page and the background script; `popup/` is the toolbar popup (ADR-002). Each only wires up the code in `lib/`.
+- `lib/`: `steam-login.ts` (the two Steam calls), `login-handler.ts` (the background script's side of the protocol), `page-bridge.ts` (the content script's side), `protocol.ts` (the messages and SkinVault's origins), `permissions.ts` (the host access, shared by the manifest and the popup) and `popup.ts`.
+- `public/`: files copied as-is into the package: the icons, and `_locales/` with the extension's name, description and popup texts.
 - `wxt.config.ts`: the manifest's fields and permissions.
 
 ## Permissions and origins
 
 - **Host access** to `https://api.steampowered.com/IAuthenticationService/*` only. Browsers grant host permissions per host, so in practice it covers `api.steampowered.com`; the extension calls nothing else there. No `cookies`, `tabs`, `storage` or other permissions: it never reads the browser's Steam session.
 - **SkinVault's origins:** the content script runs on `https://skinvault.cc` and `https://test.skinvault.cc`, plus `http://localhost:5173` (skinvault-web's dev server) in development builds only.
+
+## Popup
+
+The toolbar popup (ADR-002) checks whether the browser has granted the host access above (`permissions.contains`). Chromium grants it at install; Firefox can leave Manifest V3 host access to the user, so when it is missing the popup says so and offers a button that requests exactly that access (`permissions.request`, from the click, as browsers require). It always links to the account page on skinvault.cc and says how linking works. It is built with `textContent` only.
+
+## Languages
+
+The extension's name, description and popup texts come from `public/_locales/`, through `browser.i18n`, in skinvault-web's seven languages. The browsers' locale codes need a region for Portuguese and Chinese, so they are `en` (the default), `es`, `de`, `fr`, `pt_PT`, `pt_BR`, `zh_CN` and `ar`; a test keeps every locale's keys equal to English's. The popup sets its `lang` and its text direction from the browser.
 
 ## Protocol
 
