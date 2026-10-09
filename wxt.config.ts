@@ -1,9 +1,5 @@
 import { defineConfig } from 'wxt';
-
-// Host access to Steam's login API only (skinvault-api's ADR-023): the two
-// calls a web page can't make. Browsers grant host permissions per host, so
-// the path documents intent rather than narrowing the grant.
-export const HOST_PERMISSIONS = ['https://api.steampowered.com/IAuthenticationService/*'];
+import { HOST_PERMISSIONS } from './lib/permissions';
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
@@ -11,7 +7,10 @@ export default defineConfig({
 	// browsers get the same manifest shape (ADR-001).
 	manifestVersion: 3,
 	manifest: {
-		name: 'SkinVault',
+		// From public/_locales, in skinvault-web's seven languages.
+		default_locale: 'en',
+		name: '__MSG_extName__',
+		description: '__MSG_extDescription__',
 		host_permissions: HOST_PERMISSIONS
 	}
 });

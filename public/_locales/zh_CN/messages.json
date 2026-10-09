@@ -1,0 +1,23 @@
+{
+	"extName": {
+		"message": "SkinVault"
+	},
+	"extDescription": {
+		"message": "在你自己的浏览器中将 Steam 账户关联到 SkinVault，这样批准时 Steam 显示的是你自己的位置。"
+	},
+	"popupReady": {
+		"message": "已准备好关联你的 Steam 账户。"
+	},
+	"popupNeedsAccess": {
+		"message": "请允许访问 Steam 登录，以便扩展关联你的账户。"
+	},
+	"popupAllow": {
+		"message": "允许访问"
+	},
+	"popupOpenAccount": {
+		"message": "打开你的 SkinVault 账户"
+	},
+	"popupHowTo": {
+		"message": "在账户页面选择通过扩展关联 Steam，然后用 Steam 应用扫描二维码。"
+	}
+}
