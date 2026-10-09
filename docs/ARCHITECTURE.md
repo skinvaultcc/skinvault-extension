@@ -15,9 +15,31 @@ A web page can't do this itself: `api.steampowered.com` doesn't allow requests f
 
 ## Project structure
 
-- `entrypoints/`: one file or folder per entrypoint, as WXT expects (the background script, the content script, the popup).
+- `entrypoints/`: one file per entrypoint, as WXT expects. `background.ts` makes the Steam calls; `content.ts` runs on SkinVault's pages and carries messages between the page and the background script. Both only wire up the code in `lib/`.
+- `lib/`: `steam-login.ts` (the two Steam calls), `login-handler.ts` (the background script's side of the protocol), `page-bridge.ts` (the content script's side) and `protocol.ts` (the messages and SkinVault's origins).
 - `public/`: files copied as-is into the package, such as the icons.
 - `wxt.config.ts`: the manifest's fields and permissions.
+
+## Permissions and origins
+
+- **Host access** to `https://api.steampowered.com/IAuthenticationService/*` only. Browsers grant host permissions per host, so in practice it covers `api.steampowered.com`; the extension calls nothing else there. No `cookies`, `tabs`, `storage` or other permissions: it never reads the browser's Steam session.
+- **SkinVault's origins:** the content script runs on `https://skinvault.cc` and `https://test.skinvault.cc`, plus `http://localhost:5173` (skinvault-web's dev server) in development builds only.
+
+## Protocol
+
+SkinVault's page and the content script talk through `window.postMessage`; the content script and the background script through `runtime.sendMessage`.
+
+1. When it loads, the content script posts `{ source: 'skinvault-extension', ready: true, version }`. A page that started listening later sends a `ping` and gets `{ type: 'ready', version }` back.
+2. The page posts `{ source: 'skinvault-page', id, request }`, where `request` is `start`, `poll` or `cancel`. The content script answers with `{ source: 'skinvault-extension', id, response }`:
+   - `start` begins a Steam QR login (`BeginAuthSessionViaQR`, platform `WebBrowser`, as skinvault-api's own link): `started` with the challenge URL the page shows as a QR code.
+   - `poll`, every few seconds (`PollAuthSessionStatus`): `pending` (with a new challenge URL when Steam rotates it), `approved` with the refresh token and the account name, or `failed` with `expired`, `steam_error` or `not_started`.
+   - `cancel` drops the login: `cancelled`.
+3. The page sends the refresh token, with its link ticket, to skinvault-api (`POST /users/me/steam-session/token`, through skinvault-web's proxy). The extension keeps nothing once it has answered `approved`.
+
+Who can talk to whom:
+
+- The content script accepts only messages the page posted to itself (same window, same origin) and tagged `skinvault-page`, and posts only to the page's own origin, so neither an embedded frame nor another site can use it or read its replies.
+- The background script answers only this extension's content script in a tab on one of SkinVault's origins, and keeps one login per tab, in memory. If the browser stops the background script between two polls, the next poll answers `not_started` and the page starts again.
 
 ## Testing
 
