@@ -6,7 +6,7 @@
 		"message": "Vincula sua conta Steam ao SkinVault a partir do seu próprio navegador, para que a Steam mostre sua própria localização ao aprovar."
 	},
 	"popupReady": {
-		"message": "Pronta para vincular sua conta Steam."
+		"message": "A extensão está pronta. A página da sua conta SkinVault mostra se o Steam está vinculado."
 	},
 	"popupNeedsAccess": {
 		"message": "Permita o acesso ao login da Steam para que a extensão possa vincular sua conta."

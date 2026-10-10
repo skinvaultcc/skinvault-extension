@@ -6,7 +6,7 @@
 		"message": "Links your Steam account to SkinVault from your own browser, so Steam shows your own location when you approve it."
 	},
 	"popupReady": {
-		"message": "Ready to link your Steam account."
+		"message": "The extension is ready. Your SkinVault account page shows whether Steam is linked."
 	},
 	"popupNeedsAccess": {
 		"message": "Allow access to Steam's login so the extension can link your account."

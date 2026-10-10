@@ -24,4 +24,14 @@ describe('locales', () => {
 			expect(messages[key]!.message.trim()).not.toBe('');
 		}
 	});
+
+	// The popup can't know whether the account is linked (it keeps nothing),
+	// so its ready message points to the account page instead of reading as
+	// "not linked yet" (issue #8).
+	it('the ready message points to the account page for the link status', () => {
+		const ready = messagesOf('en').popupReady!.message;
+
+		expect(ready).not.toMatch(/ready to link/i);
+		expect(ready).toMatch(/account page/i);
+	});
 });
