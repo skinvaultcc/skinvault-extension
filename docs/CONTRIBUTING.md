@@ -16,7 +16,7 @@ Trying it against SkinVault also needs skinvault-web and skinvault-api running l
 
 ## Branches
 
-- **`main`:** what is published. Each release builds the store packages from it (see [Release](#9-release)).
+- **`main`:** what is published. Each release tags it and builds the zips from it (see [Release](#9-release)).
 - **`dev`:** the integration branch. Every change lands here first.
 - **Work branches:** one per issue, short-lived, created from `dev`.
 
@@ -110,7 +110,7 @@ Merging instead of rebasing avoids force-pushing; squash merge leaves no trace o
 
 ### 8. Merge and close
 
-- There is no CI workflow: the [local checks](#4-implementation) on the branch's last commit, merged with `origin/dev`, are recorded in the PR as a table of command and result.
+- There is no CI workflow on PRs (only the [Release](#9-release) one, on tags): the [local checks](#4-implementation) on the branch's last commit, merged with `origin/dev`, are recorded in the PR as a table of command and result.
 - Merge with **squash merge**: each PR becomes a single commit on `dev`, titled after the PR and followed by its number (e.g. `Start Steam's QR login from the browser (#2)`). Set that title explicitly: for single-commit PRs, GitHub defaults to the commit message instead of the PR title.
 - Delete the branch after merging.
 - `Closes #<issue>` only closes an issue automatically when the PR merges into the default branch, `main`, so close it by hand after merging into `dev`.
@@ -122,9 +122,21 @@ gh issue close <issue>
 
 ### 9. Release
 
-When `dev` is stable, open a PR from `dev` into `main` and merge it with a **merge commit**, not a squash, so `dev` stays an ancestor of `main`. Bump `version` in `package.json` in that PR: the stores refuse a package whose version they have already seen.
+When `dev` is stable, bump `version` in `package.json` in a PR to `dev`, following the workflow above: the stores refuse a package whose version they have already seen. It can't go in the release PR, whose branch is `dev` itself.
 
-Then build the store packages from `main` and upload them (`.output/*-chrome.zip` to the Chrome Web Store, `.output/*-firefox.zip` and its sources zip to addons.mozilla.org):
+Then open a PR from `dev` into `main` and merge it with a **merge commit**, not a squash, so `dev` stays an ancestor of `main`.
+
+Tag the release on `main` with that version:
+
+```bash
+git fetch origin
+git tag v<version> origin/main
+git push origin v<version>
+```
+
+The tag runs the Release workflow (`.github/workflows/release.yml`): it checks that the tag matches `version`, runs lint, typecheck and tests, and creates the GitHub release with `skinvault-extension-chrome.zip` and `skinvault-extension-firefox.zip`. Those names don't change between versions, so the README's links to `releases/latest/download/` always give the latest one.
+
+Upload the same packages to the stores: `.output/*-chrome.zip` to the Chrome Web Store, and `.output/*-firefox.zip` with its sources zip to addons.mozilla.org, built from `main` with:
 
 ```bash
 pnpm run zip
