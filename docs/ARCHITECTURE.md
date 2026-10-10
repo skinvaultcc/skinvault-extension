@@ -27,7 +27,7 @@ A web page can't do this itself: `api.steampowered.com` doesn't allow requests f
 
 ## Popup
 
-The toolbar popup (ADR-002) checks whether the browser has granted the host access above (`permissions.contains`). Chromium grants it at install; Firefox can leave Manifest V3 host access to the user, so when it is missing the popup says so and offers a button that requests exactly that access (`permissions.request`, from the click, as browsers require). It always links to the account page on skinvault.cc and says how linking works. It is built with `textContent` only.
+The toolbar popup (ADR-002) checks whether the browser has granted the host access above (`permissions.contains`). Chromium grants it at install; Firefox can leave Manifest V3 host access to the user, so when it is missing the popup says so and offers a button that requests exactly that access (`permissions.request`, from the click, as browsers require). When the access is there, it says the extension is ready and that the account page shows whether Steam is linked: it keeps nothing after a link, so it can't know the account's state. It always links to the account page on skinvault.cc and says how linking works. It is built with `textContent` only.
 
 ## Languages
 

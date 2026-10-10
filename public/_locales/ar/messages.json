@@ -6,7 +6,7 @@
 		"message": "يربط حسابك على Steam بـ SkinVault من متصفحك أنت، فيعرض Steam موقعك أنت عند الموافقة."
 	},
 	"popupReady": {
-		"message": "جاهزة لربط حسابك على Steam."
+		"message": "الإضافة جاهزة. تعرض صفحة حسابك على SkinVault ما إذا كان Steam مربوطًا."
 	},
 	"popupNeedsAccess": {
 		"message": "اسمح بالوصول إلى تسجيل الدخول في Steam حتى تتمكن الإضافة من ربط حسابك."
