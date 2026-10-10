@@ -6,7 +6,7 @@
 		"message": "Verknüpft dein Steam-Konto über deinen eigenen Browser mit SkinVault, damit Steam bei der Bestätigung deinen eigenen Standort anzeigt."
 	},
 	"popupReady": {
-		"message": "Bereit, dein Steam-Konto zu verknüpfen."
+		"message": "Die Erweiterung ist bereit. Ob Steam verknüpft ist, siehst du auf deiner SkinVault-Kontoseite."
 	},
 	"popupNeedsAccess": {
 		"message": "Erlaube den Zugriff auf die Steam-Anmeldung, damit die Erweiterung dein Konto verknüpfen kann."

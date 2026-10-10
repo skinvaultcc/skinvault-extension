@@ -6,7 +6,7 @@
 		"message": "Associe ton compte Steam à SkinVault depuis ton propre navigateur, pour que Steam affiche ta propre position quand tu l'approuves."
 	},
 	"popupReady": {
-		"message": "Prête à associer ton compte Steam."
+		"message": "L'extension est prête. Ta page de compte SkinVault indique si Steam est associé."
 	},
 	"popupNeedsAccess": {
 		"message": "Autorise l'accès à la connexion Steam pour que l'extension puisse associer ton compte."
