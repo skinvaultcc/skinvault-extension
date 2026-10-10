@@ -2,7 +2,7 @@
 	"name": "skinvault-extension",
 	"description": "Links your Steam account to SkinVault from your own browser, so Steam shows your own location when you approve it.",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
 		"dev": "wxt",

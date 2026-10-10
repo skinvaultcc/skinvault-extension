@@ -7,6 +7,7 @@ What the extension does today and what is still open. How it works is in [ARCHIT
 1. **Foundation**: WXT with TypeScript (ADR-001), builds for Chromium and Firefox, Prettier and ESLint, Vitest with WXT's in-memory browser.
 2. **Steam login bridge**: the QR login started and polled from the background script, and the content script carrying the challenge and the refresh token to and from SkinVault's page (see Protocol in ARCHITECTURE.md).
 3. **Popup** (ADR-002): whether the browser granted access to Steam's login, with a button to grant it, and a link to the account page; the name, description and texts in seven languages.
+4. **GitHub releases**: each `vX.Y.Z` tag publishes the Chromium and Firefox zips as a release, with install steps in the README.
 
 ## Open
 
