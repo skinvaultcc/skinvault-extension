@@ -17,7 +17,7 @@ A web page can't do this itself: `api.steampowered.com` doesn't allow requests f
 
 - `entrypoints/`: one file per entrypoint, as WXT expects. `background.ts` makes the Steam calls; `content.ts` runs on SkinVault's pages and carries messages between the page and the background script; `popup/` is the toolbar popup (ADR-002). Each only wires up the code in `lib/`.
 - `lib/`: `steam-login.ts` (the two Steam calls), `login-handler.ts` (the background script's side of the protocol), `page-bridge.ts` (the content script's side), `protocol.ts` (the messages and SkinVault's origins), `permissions.ts` (the host access, shared by the manifest and the popup) and `popup.ts`.
-- `public/`: files copied as-is into the package: the icons, and `_locales/` with the extension's name, description and popup texts.
+- `public/`: files copied as-is into the package: the icons (SkinVault's, resized from skinvault-web's `static/icon-512.png`; the toolbar button uses them too), and `_locales/` with the extension's name, description and popup texts.
 - `wxt.config.ts`: the manifest's fields and permissions.
 
 ## Permissions and origins
