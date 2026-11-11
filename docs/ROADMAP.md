@@ -13,4 +13,5 @@ What the extension does today and what is still open. How it works is in [ARCHIT
 ## Open
 
 - The rest of the live check on the test site: linking with a real account worked in Chrome. Still open: Firefox, and the server using a session linked this way (the ADR-021 trade-offer cycle).
-- Store listings and privacy policy; publishing on the Chrome Web Store and addons.mozilla.org.
+- Store listings and privacy policy; publishing on the Chrome Web Store and addons.mozilla.org. The Chrome Web Store is on hold by the maintainer's decision. Firefox needs `gecko.id` and `data_collection_permissions`. The maintainer creates the store accounts.
+- Install steps on the release page; today only the README has them.
